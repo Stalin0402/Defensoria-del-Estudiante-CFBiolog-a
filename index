@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acoso Sexual Universitario - Información y Recursos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #8B1874;
+            --secondary-color: #B71375;
+            --accent-color: #FC4F00;
+            --light-color: #F8F9FA;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        .sticky-header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .test-section {
+            background-color: #f8f9fa;
+        }
+        
+        .question-card {
+            display: none;
+        }
+        
+        .question-card.active {
+            display: block;
+        }
+        
+        .result-section {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .result-section.harassment {
+            background-color: rgba(139, 24, 116, 0.1);
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .result-section.no-harassment {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 5px solid #28a745;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background-color: #e04400;
+            border-color: #e04400;
+            color: white;
+        }
+        
+        .admin-section {
+            background-color: #f1f1f1;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        
+        .chart-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header que aparece al hacer scroll -->
+    <header class="sticky-header fixed-top py-3" id="stickyHeader" style="display: none;">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-color);">Acoso Universitario</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#que-es">¿Qué es?</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#mitos">Mitos y Verdades</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#que-hacer">¿Qué hacer?</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#test">Test de Identificación</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Acoso Sexual en el Ámbito Universitario</h1>
+            <p class="lead mb-4">Información, recursos y apoyo para identificar y enfrentar el acoso sexual en espacios educativos</p>
+            <a href="#test" class="btn btn-light btn-lg px-4">Realizar Test de Identificación</a>
+        </div>
+    </section>
+
+    <!-- Sección: ¿Qué es el acoso? -->
+    <section id="que-es" class="section">
+        <div class="container">
+            <h2 class="section-title">¿Qué es el acoso sexual en la Universidad?</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>El acoso sexual en el ámbito universitario se refiere a cualquier comportamiento de naturaleza sexual no deseado que afecta la dignidad de estudiantes, docentes o personal administrativo. Puede manifestarse de diversas formas:</p>
+                    <ul>
+                        <li>Comentarios o insinuaciones sexuales no deseadas</li>
+                        <li>Contacto físico inapropiado</li>
+                        <li>Presión para actividades sexuales</li>
+                        <li>Compartir contenido sexual explícito sin consentimiento</li>
+                        <li>Acoso a través de medios digitales</li>
+                    </ul>
+                    <p>Estas conductas crean un ambiente intimidatorio, hostil o ofensivo que afecta el desempeño académico y el bienestar psicológico de las víctimas.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Estudiantes en campus universitario" class="img-fluid rounded shadow">
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Acoso Quid Pro Quo</h5>
+                            <p class="card-text">Cuando se condicionan beneficios académicos (calificaciones, recomendaciones) a cambio de favores sexuales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Acoso Hostil</h5>
+                            <p class="card-text">Creación de un ambiente intimidatorio a través de comentarios, gestos o conductas de naturaleza sexual.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Acoso Digital</h5>
+                            <p class="card-text">Acoso a través de medios electrónicos como redes sociales, correos o mensajes de texto con contenido sexual no deseado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: Mitos y Verdades -->
+    <section id="mitos" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Mitos y Verdades sobre el Acoso Sexual</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Mito</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>"El acoso sexual solo ocurre cuando hay contacto físico"</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Mito</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>"Si no se resiste, significa que le gusta"</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">Mito</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>"Solo las mujeres sufren acoso sexual"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Verdad</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>El acoso sexual puede ser verbal, no verbal o físico. Los comentarios, gestos o miradas lascivas también constituyen acoso.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Verdad</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>La falta de resistencia puede deberse al miedo, la sorpresa o la paralización. El consentimiento debe ser explícito y entusiasta.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Verdad</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Aunque las mujeres son las principales víctimas, cualquier persona puede sufrir acoso sexual independientemente de su género.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección: ¿Qué hacer? -->
+    <section id="que-hacer" class="section">
+        <div class="container">
+            <h2 class="section-title">¿Qué hacer en caso de acoso sexual?</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="display-4 text-primary">1</span>
+                            </div>
+                            <h5 class="card-title">Reconocer la situación</h5>
+                            <p class="card-text">Identifica que lo que estás experimentando es acoso sexual. No minimices tus sentimientos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="display-4 text-primary">2</span>
+                            </div>
+                            <h5 class="card-title">Documenta los incidentes</h5>
+                            <p class="card-text">Registra fechas, horas, lugares y detalles de lo ocurrido. Guarda cualquier evidencia como mensajes o correos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="display-4 text-primary">3</span>
+                            </div>
+                            <h5 class="card-title">Busca apoyo</h5>
+                            <p class="card-text">Habla con personas de confianza, amigos, familiares o profesionales que puedan brindarte apoyo emocional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="display-4 text-primary">4</span>
+                            </div>
+                            <h5 class="card-title">Informa formalmente</h5>
+                            <p class="card-text">Presenta una queja formal ante las autoridades universitarias siguiendo los protocolos establecidos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="display-4 text-primary">5</span>
+                            </div>
+                            <h5 class="card-title">Busca asesoría legal</h5>
+                            <p class="card-text">Consulta con abogados especializados en derechos estudiantiles o de género para conocer tus opciones legales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="display-4 text-primary">6</span>
+                            </div>
+                            <h5 class="card-title">Cuida tu salud mental</h5>
+                            <p class="card-text">Considera buscar apoyo psicológico para procesar la experiencia y desarrollar estrategias de afrontamiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-4">
+                <h5>Recursos de apoyo inmediato</h5>
+                <ul class="mb-0">
+                    <li>Línea nacional de atención a víctimas: <strong>01-800-123-4567</strong></li>
+                    <li>Centro de apoyo psicológico universitario: <strong>ext. 2345</strong></li>
+                    <li>Oficina de equidad de género: <strong>Edificio B, piso 3</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test de Identificación -->
+    <section id="test" class="section test-section">
+        <div class="container">
+            <h2 class="section-title">Test de Identificación de Acoso</h2>
+            <p class="lead mb-4">Este test te ayudará a identificar posibles situaciones de acoso sexual en el ámbito universitario.</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <!-- Pregunta 1: Género -->
+                            <div id="question-0" class="question-card active">
+                                <h4 class="mb-4">Sobre ti:</h4>
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">Selecciona tu género:</label>
+                                    <div class="mt-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="male" value="Hombre">
+                                            <label class="form-check-label" for="male">
+                                                Hombre
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="female" value="Mujer">
+                                            <label class="form-check-label" for="female">
+                                                Mujer
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="other" value="Otro">
+                                            <label class="form-check-label" for="other">
+                                                Otro / Prefiero no especificar
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary mt-3" onclick="nextQuestion(0)">Siguiente</button>
+                            </div>
+                            
+                            <!-- Preguntas 1-13 -->
+                            <div id="question-1" class="question-card">
+                                <h4 class="mb-4">Pregunta 1 de 13</h4>
+                                <p class="fw-bold">¿Alguna persona en la universidad te ha hecho comentarios sexuales no deseados sobre tu apariencia o cuerpo?</p>
+                                <div class="mt-3">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q1" id="q1a" value="1">
+                                        <label class="form-check-label" for="q1a">
+                                            A) Nunca me ha pasado
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q1" id="q1b" value="2">
+                                        <label class="form-check-label" for="q1b">
+                                            B) Me ha pasado una vez
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q1" id="q1c" value="3">
+                                        <label class="form-check-label" for="q1c">
+                                            C) Me ha pasado algunas veces
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q1" id="q1d" value="4">
+                                        <label class="form-check-label" for="q1d">
+                                            D) Me pasa seguido
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button class="btn btn-outline-secondary" onclick="prevQuestion(1)">Anterior</button>
+                                    <button class="btn btn-primary" onclick="nextQuestion(1)">Siguiente</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Las siguientes preguntas seguirían el mismo patrón -->
+                            <!-- Por brevedad, solo incluyo una pregunta como ejemplo -->
+                            <div id="question-2" class="question-card">
+                                <h4 class="mb-4">Pregunta 2 de 13</h4>
+                                <p class="fw-bold">¿Alguna persona en la universidad te ha enviado mensajes, imágenes o videos de contenido sexual no deseados?</p>
+                                <div class="mt-3">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q2" id="q2a" value="1">
+                                        <label class="form-check-label" for="q2a">
+                                            A) Nunca me ha pasado
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q2" id="q2b" value="2">
+                                        <label class="form-check-label" for="q2b">
+                                            B) Me ha pasado una vez
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q2" id="q2c" value="3">
+                                        <label class="form-check-label" for="q2c">
+                                            C) Me ha pasado algunas veces
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q2" id="q2d" value="4">
+                                        <label class="form-check-label" for="q2d">
+                                            D) Me pasa seguido
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button class="btn btn-outline-secondary" onclick="prevQuestion(2)">Anterior</button>
+                                    <button class="btn btn-primary" onclick="nextQuestion(2)">Siguiente</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Pregunta final (13) -->
+                            <div id="question-13" class="question-card">
+                                <h4 class="mb-4">Pregunta 13 de 13</h4>
+                                <p class="fw-bold">¿Alguna persona en la universidad ha condicionado beneficios académicos (calificaciones, recomendaciones, etc.) a cambio de favores sexuales?</p>
+                                <div class="mt-3">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q13" id="q13a" value="1">
+                                        <label class="form-check-label" for="q13a">
+                                            A) Nunca me ha pasado
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q13" id="q13b" value="2">
+                                        <label class="form-check-label" for="q13b">
+                                            B) Me ha pasado una vez
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q13" id="q13c" value="3">
+                                        <label class="form-check-label" for="q13c">
+                                            C) Me ha pasado algunas veces
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="q13" id="q13d" value="4">
+                                        <label class="form-check-label" for="q13d">
+                                            D) Me pasa seguido
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button class="btn btn-outline-secondary" onclick="prevQuestion(13)">Anterior</button>
+                                    <button class="btn btn-primary" onclick="calculateResults()">Ver resultados</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Resultados -->
+                            <div id="results" class="result-section">
+                                <h3 id="result-title" class="mb-3">Resultado del Test</h3>
+                                <p id="result-text" class="mb-4"></p>
+                                <div id="motivational-message" class="mb-4"></div>
+                                <a id="report-link" href="#" class="btn btn-accent btn-lg mb-3">Denunciar Acoso</a>
+                                <p class="text-muted">Recuerda que no estás solo/a. Hay personas y recursos disponibles para ayudarte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Administrador -->
+    <section id="admin" class="section admin-section">
+        <div class="container">
+            <h2 class="section-title">Panel de Administración</h2>
+            <p class="mb-4">Esta sección es exclusiva para administradores y muestra estadísticas sobre los resultados del test.</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <canvas id="harassmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="stat-card bg-white shadow-sm">
+                        <h3 id="total-tests">0</h3>
+                        <p class="mb-0">Tests realizados</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card bg-white shadow-sm">
+                        <h3 id="harassment-cases">0</h3>
+                        <p class="mb-0">Casos de acoso identificados</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card bg-white shadow-sm">
+                        <h3 id="report-rate">0%</h3>
+                        <p class="mb-0">Tasa de denuncia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Acoso Sexual Universitario</h5>
+                    <p>Recursos e información para identificar y enfrentar el acoso sexual en el ámbito educativo.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Enlaces rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#que-es" class="text-white">¿Qué es?</a></li>
+                        <li><a href="#mitos" class="text-white">Mitos y Verdades</a></li>
+                        <li><a href="#que-hacer" class="text-white">¿Qué hacer?</a></li>
+                        <li><a href="#test" class="text-white">Test de Identificación</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: info@universidad.edu</li>
+                        <li>Teléfono: (123) 456-7890</li>
+                        <li>Oficina de Equidad: Edificio B, Piso 3</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p>&copy; 2023 Universidad - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mostrar/ocultar header al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('stickyHeader');
+            if (window.scrollY > 100) {
+                header.style.display = 'block';
+            } else {
+                header.style.display = 'none';
+            }
+        });
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Funcionalidad del test
+        let currentQuestion = 0;
+        const totalQuestions = 13;
+        
+        function nextQuestion(current) {
+            // Validar que se haya seleccionado una respuesta
+            if (current > 0) {
+                const selected = document.querySelector(`input[name="q${current}"]:checked`);
+                if (!selected) {
+                    alert('Por favor, selecciona una respuesta antes de continuar.');
+                    return;
+                }
+            } else {
+                // Validar selección de género
+                const selectedGender = document.querySelector('input[name="gender"]:checked');
+                if (!selectedGender) {
+                    alert('Por favor, selecciona tu género.');
+                    return;
+                }
+            }
+            
+            document.getElementById(`question-${current}`).classList.remove('active');
+            currentQuestion = current + 1;
+            document.getElementById(`question-${currentQuestion}`).classList.add('active');
+        }
+        
+        function prevQuestion(current) {
+            document.getElementById(`question-${current}`).classList.remove('active');
+            currentQuestion = current - 1;
+            document.getElementById(`question-${currentQuestion}`).classList.add('active');
+        }
+        
+        function calculateResults() {
+            // Validar última pregunta
+            const selected = document.querySelector(`input[name="q13"]:checked`);
+            if (!selected) {
+                alert('Por favor, selecciona una respuesta antes de ver los resultados.');
+                return;
+            }
+            
+            // Calcular puntuación (simulada)
+            let score = 0;
+            for (let i = 1; i <= 13; i++) {
+                const answer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (answer) {
+                    score += parseInt(answer.value);
+                }
+            }
+            
+            // Obtener género seleccionado
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            
+            // Mostrar resultados
+            const resultsDiv = document.getElementById('results');
+            const resultTitle = document.getElementById('result-title');
+            const resultText = document.getElementById('result-text');
+            const motivationalMessage = document.getElementById('motivational-message');
+            const reportLink = document.getElementById('report-link');
+            
+            document.getElementById(`question-${currentQuestion}`).classList.remove('active');
+            
+            if (score >= 20 && score <= 65) {
+                resultsDiv.className = 'result-section harassment';
+                resultTitle.textContent = 'Posible situación de acoso identificada';
+                resultText.textContent = `Tu puntuación es ${score}. Según los resultados, podrías estar experimentando una situación de acoso sexual.`;
+                motivationalMessage.innerHTML = '<p><strong>No estás solo/a en esto.</strong> Hay personas y recursos disponibles para ayudarte. Considera hablar con alguien de confianza y buscar apoyo.</p>';
+            } else {
+                resultsDiv.className = 'result-section no-harassment';
+                resultTitle.textContent = 'Resultados dentro de parámetros normales';
+                resultText.textContent = `Tu puntuación es ${score}. Según los resultados, no se identifican patrones claros de acoso sexual.`;
+                motivationalMessage.innerHTML = '<p>Es importante mantenerse alerta y conocer los recursos disponibles. Si en algún momento experimentas situaciones incómodas, no dudes en buscar ayuda.</p>';
+            }
+            
+            // Actualizar estadísticas (simulación)
+            updateStatistics(gender, score >= 20 && score <= 65);
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        // Funcionalidad del panel de administración
+        function updateStatistics(gender, isHarassment) {
+            // En una implementación real, esto se conectaría a una base de datos
+            // Por ahora, simulamos datos
+            
+            // Actualizar contadores
+            document.getElementById('total-tests').textContent = parseInt(document.getElementById('total-tests').textContent) + 1;
+            
+            if (isHarassment) {
+                document.getElementById('harassment-cases').textContent = parseInt(document.getElementById('harassment-cases').textContent) + 1;
+            }
+            
+            // Actualizar gráficos
+            updateCharts();
+        }
+        
+        function updateCharts() {
+            // Datos simulados para los gráficos
+            const genderData = {
+                labels: ['Mujeres', 'Hombres', 'Otros'],
+                datasets: [{
+                    data: [65, 30, 5],
+                    backgroundColor: [
+                        '#8B1874',
+                        '#B71375',
+                        '#FC4F00'
+                    ]
+                }]
+            };
+            
+            const harassmentData = {
+                labels: ['Acoso identificado', 'Sin acoso identificado'],
+                datasets: [{
+                    data: [40, 60],
+                    backgroundColor: [
+                        '#8B1874',
+                        '#28a745'
+                    ]
+                }]
+            };
+            
+            // Gráfico de género
+            const genderCtx = document.getElementById('genderChart').getContext('2d');
+            new Chart(genderCtx, {
+                type: 'pie',
+                data: genderData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribución por Género'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de acoso
+            const harassmentCtx = document.getElementById('harassmentChart').getContext('2d');
+            new Chart(harassmentCtx, {
+                type: 'doughnut',
+                data: harassmentData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Resultados del Test'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Inicializar gráficos al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCharts();
+            
+            // Configurar enlace de denuncia (reemplazar con el enlace real cuando esté disponible)
+            document.getElementById('report-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('En una implementación real, este enlace llevaría al formulario de denuncia externo.');
+                // window.location.href = 'URL_DEL_FORMULARIO_EXTERNO';
+            });
+        });
+    </script>
+</body>
+</html>
